@@ -1,0 +1,26 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+      {
+          "type": "shell",
+          "label": "C++: clang++ build active file",
+          "command": "/usr/bin/clang++",
+          "args": [
+              "-g",
+              "/home/williamkelvin/Personal/chat-cpp/*.cpp",
+              "-o",
+              "/home/williamkelvin/Personal/chat-cpp/main"
+          ],
+          "options": {
+              "cwd": "/usr/bin"
+          },
+          "problemMatcher": [
+              "$clang"
+          ],
+          "group": {
+              "kind": "build",
+              "isDefault": true
+          }
+      }
+  ]
+  }

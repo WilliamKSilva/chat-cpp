@@ -1,9 +1,12 @@
 #include "socket.h"
 #include <arpa/inet.h>
+#include <cstdio>
 #include <iostream>
 #include <netinet/in.h>
 #include <string>
-#include <sys/socket.h> 
+#include <sys/socket.h>
+
+const int SOCKET_ERROR_CODE = -1;
 
 int createSocket() { return socket(PF_INET, SOCK_STREAM, 0); }
 
@@ -27,4 +30,34 @@ int acceptSocket(int socket, sockaddr_in& sockAddress) {
 
 int receiveMessage(int socket, void* buffer, int flags) {
   return recv(socket, buffer, sizeof(char) * 10000, flags);
+}
+
+int closeSocketConnection(int socket, int how) {
+  return shutdown(socket, how);
+}
+
+void acceptAndReadSocket(int fd, sockaddr_in& sockAddress, int flags) {
+  char buffer[10000];
+
+  int socket = acceptSocket(fd, sockAddress);
+  
+  int bytes = receiveMessage(socket, &buffer, flags);
+
+  if (bytes == -1) {
+    perror("Error trying to read incoming data");
+    return;
+  }
+
+  std::cout << buffer << "\n";
+
+  int closeConnectionReturn = closeSocketConnection(socket, SHUT_RDWR);
+
+  std::cout << closeConnectionReturn << "\n";
+
+  if (closeConnectionReturn == SOCKET_ERROR_CODE) {
+    perror("Error trying to close socket connection");
+    return;
+  }
+
+  std::cout << "Connection closed!" << "\n";
 }

@@ -5,6 +5,7 @@
 #include <netinet/in.h>
 #include <string>
 #include <sys/socket.h>
+#include <thread>
 
 const int SOCKET_ERROR_CODE = -1;
 const int PORT = 3000;
@@ -34,24 +35,9 @@ int main() {
   }
 
   while (true) {
-    int acceptSocketValue = acceptSocket(fd, sockAddress);
+    // std::thread t1(acceptAndReadSocket, fd, sockAddress, MSG_PEEK);
+    acceptAndReadSocket(fd, sockAddress, MSG_PEEK);
 
-    std::cout << acceptSocketValue << "\n";
-
-    if (acceptSocketValue == SOCKET_ERROR_CODE) {
-      perror("Error accepting socket connection");
-      return -1;
-    }
-
-    char buffer[10000];
-
-    int receiveMessageValue = receiveMessage(acceptSocketValue, &buffer, MSG_PEEK);
-
-    if (receiveMessageValue == SOCKET_ERROR_CODE) {
-      std::cout << "Error trying to read socket data";
-      return -1;
-    }
-
-    std::cout << buffer << "\n";
+    // t1.join();
   }
 }

@@ -1,4 +1,3 @@
-#include "socket.h"
 #include <arpa/inet.h>
 #include <cstdio>
 #include <functional>
@@ -7,6 +6,8 @@
 #include <string>
 #include <sys/socket.h>
 #include <thread>
+
+#include "socket.h"
 
 const int SOCKET_ERROR_CODE = -1;
 const int PORT = 3000;
@@ -35,9 +36,17 @@ int main() {
     return -1;
   }
 
+  Messages messages;
+
   while (true) {
+    // Approach de idiota, tenho que fazer uma thread pool pra usar
+    // os recursos direito
     // std::thread t(acceptAndReadSocket, fd, std::ref(sockAddress));
-    acceptAndReadSocket(fd, sockAddress);
+    std::cout << messages.getSize() << "\n";
+
+    messages.stdOutMessages();
+    
+    acceptAndReadSocket(fd, sockAddress, messages);
 
     // t.join();
   }

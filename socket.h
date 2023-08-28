@@ -1,4 +1,5 @@
 #include <netinet/in.h>
+#include "messages.h"
 
 int createSocket();
 
@@ -14,4 +15,4 @@ int receiveMessage(int socket, void* buffer, int flags);
 
 int closeSocketConnection(int socket, int how);
 
-void acceptAndReadSocket(int fd, sockaddr_in& sockAddress);
+void acceptAndReadSocket(int fd, sockaddr_in& sockAddress, Messages& messages);

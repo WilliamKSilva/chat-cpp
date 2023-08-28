@@ -1,4 +1,4 @@
-#include "socket.h"
+#include "messages.h"
 #include <arpa/inet.h>
 #include <cstdio>
 #include <iostream>
@@ -36,7 +36,7 @@ int closeSocketConnection(int socket, int how) {
   return shutdown(socket, how);
 }
 
-void acceptAndReadSocket(int fd, sockaddr_in& sockAddress) {
+void acceptAndReadSocket(int fd, sockaddr_in& sockAddress, Messages& messages) {
   char buffer[10000];
 
   int socket = acceptSocket(fd, sockAddress);
@@ -48,11 +48,9 @@ void acceptAndReadSocket(int fd, sockaddr_in& sockAddress) {
     return;
   }
 
-  std::cout << buffer << "\n";
+  messages.newMessage(buffer);
 
   int closeConnectionReturn = closeSocketConnection(socket, SHUT_RDWR);
-
-  std::cout << closeConnectionReturn << "\n";
 
   if (closeConnectionReturn == SOCKET_ERROR_CODE) {
     perror("Error trying to close socket connection");

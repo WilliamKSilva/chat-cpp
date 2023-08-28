@@ -1,6 +1,7 @@
 #include "socket.h"
 #include <arpa/inet.h>
 #include <cstdio>
+#include <functional>
 #include <iostream>
 #include <netinet/in.h>
 #include <string>
@@ -35,9 +36,9 @@ int main() {
   }
 
   while (true) {
-    // std::thread t1(acceptAndReadSocket, fd, sockAddress, MSG_PEEK);
-    acceptAndReadSocket(fd, sockAddress, MSG_PEEK);
+    // std::thread t(acceptAndReadSocket, fd, std::ref(sockAddress));
+    acceptAndReadSocket(fd, sockAddress);
 
-    // t1.join();
+    // t.join();
   }
 }

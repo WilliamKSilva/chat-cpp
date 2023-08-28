@@ -14,4 +14,4 @@ int receiveMessage(int socket, void* buffer, int flags);
 
 int closeSocketConnection(int socket, int how);
 
-void acceptAndReadSocket(int fd, sockaddr_in& sockAddress, int flags);
+void acceptAndReadSocket(int fd, sockaddr_in& sockAddress);

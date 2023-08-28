@@ -36,12 +36,12 @@ int closeSocketConnection(int socket, int how) {
   return shutdown(socket, how);
 }
 
-void acceptAndReadSocket(int fd, sockaddr_in& sockAddress, int flags) {
+void acceptAndReadSocket(int fd, sockaddr_in& sockAddress) {
   char buffer[10000];
 
   int socket = acceptSocket(fd, sockAddress);
   
-  int bytes = receiveMessage(socket, &buffer, flags);
+  int bytes = receiveMessage(socket, &buffer, MSG_PEEK);
 
   if (bytes == -1) {
     perror("Error trying to read incoming data");

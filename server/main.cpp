@@ -7,7 +7,7 @@
 #include <sys/socket.h>
 #include <thread>
 
-#include "socket.h"
+#include "../socket.h"
 
 const int SOCKET_ERROR_CODE = -1;
 const int PORT = 3000;

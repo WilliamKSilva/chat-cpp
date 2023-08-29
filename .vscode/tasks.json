@@ -24,7 +24,7 @@
         },
         {
             "type": "shell",
-            "label": "C++: clang++ build active file",
+            "label": "C++: clang++ build client files",
             "command": "/usr/bin/clang++",
             "args": [
                 "-g",

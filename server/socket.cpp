@@ -50,12 +50,12 @@ void acceptAndReadSocket(int fd, sockaddr_in& sockAddress, Messages& messages) {
 
   messages.newMessage(buffer);
 
-  int closeConnectionReturn = closeSocketConnection(socket, SHUT_RDWR);
+  // int closeConnectionReturn = closeSocketConnection(socket, SHUT_RDWR);
 
-  if (closeConnectionReturn == SOCKET_ERROR_CODE) {
-    perror("Error trying to close socket connection");
-    return;
-  }
+  // if (closeConnectionReturn == SOCKET_ERROR_CODE) {
+    // perror("Error trying to close socket connection");
+    // return;
+  // }
 
-  std::cout << "Connection closed!" << "\n";
+  // std::cout << "Connection closed!" << "\n";
 }

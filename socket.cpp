@@ -60,6 +60,6 @@ void acceptAndReadSocket(int fd, sockaddr_in& sockAddress, Messages& messages) {
   // std::cout << "Connection closed!" << "\n";
 }
 
-int sendMessageSocket(void* buffer, int fd) {
+int sendMessageSocket(int fd, void* buffer) {
   return send(fd, buffer, sizeof(buffer), MSG_EOR);
 }

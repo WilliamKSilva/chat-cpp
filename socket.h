@@ -17,4 +17,4 @@ int closeSocketConnection(int socket, int how);
 
 void acceptAndReadSocket(int fd, sockaddr_in& sockAddress, Messages& messages);
 
-int sendMessageSocket(void* buffer, int fd);
+int sendMessageSocket(int fd, void* buffer);

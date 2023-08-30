@@ -28,7 +28,7 @@
             "command": "/usr/bin/clang++",
             "args": [
                 "-g",
-                "/home/williamkelvin/Personal/chat-cpp/client/*.cpp",
+                "/home/williamkelvin/Personal/chat-cpp/*.cpp",
                 "-pthread",
                 "-std=c++20",
                 "-o",

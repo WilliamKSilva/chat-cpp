@@ -10,3 +10,6 @@ socket.o: socket.cpp socket.h messages.o
 
 messages.o: messages.cpp messages.h 
 	clang++ -c messages.cpp -o build/messages.o
+
+clear:
+	rm -rf build/*.o
